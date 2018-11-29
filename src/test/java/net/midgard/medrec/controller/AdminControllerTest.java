@@ -23,6 +23,7 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.*;
 import net.midgard.medrec.domain.Administrator;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -46,7 +47,9 @@ public class AdminControllerTest {
             when().
             get("/admin/all").
             then().
-            statusCode(200);
+            statusCode(200).
+            and()
+            .body("administrators",hasSize(2));
   }
 
   /*
