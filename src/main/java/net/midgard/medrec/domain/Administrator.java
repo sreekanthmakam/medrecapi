@@ -23,6 +23,8 @@ import lombok.Data;
 @Data
 public class Administrator implements Serializable {
 
+  private static final long serialVersionUID = 2016059167557543180L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;

@@ -222,7 +222,6 @@ public class AdminControllerTest {
    */
   @Test
   public void test06b() throws Exception {
-    Administrator newAdmin = new Administrator("thor", "welcome1", "thor@odinson.com", "midgard");
     long notFoundId = getAbsentId();
     RestAssuredMockMvc.webAppContextSetup(ctx);
 
