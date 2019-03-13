@@ -17,8 +17,9 @@ push:
     - internal/docker-push:
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
-        tag: medrecapi/$WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
-        registry: https://iad.ocir.io/v2/
+        repository: $OCIR_REPOSITORY
+        tag: v1
+        registry: $OCIR_REGISTRY
         cmd: java -jar  /pipeline/source/target/medrec-0.0.1-SNAPSHOT.jar
 
 deploy:
