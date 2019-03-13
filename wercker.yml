@@ -1,7 +1,7 @@
 box: combient/java-mvn  
 test:
   steps:
-    # Test medrec REST API
+    # Run tests on medrec REST API
     - script:
         name: Maven test
         code: mvn test
