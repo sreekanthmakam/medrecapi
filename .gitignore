@@ -24,3 +24,7 @@ nbactions.tmp
 /dist/
 /nbdist/
 /.nb-gradle/
+
+## vscode
+
+.vscode/

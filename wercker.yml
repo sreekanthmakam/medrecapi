@@ -1,0 +1,12 @@
+box: combient/java-mvn  
+test:
+  steps:
+    # Test medrec REST API
+    - script:
+        name: Maven test
+        code: mvn test
+build:
+  steps:
+    - script: 
+         name: Maven install
+         code: mvn install
