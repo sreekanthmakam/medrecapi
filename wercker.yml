@@ -18,7 +18,6 @@ push:
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
         repository: $OCIR_REPOSITORY
-        image-name: medrecapi
         tag: v1
         registry: $OCIR_REGISTRY
         cmd: java -jar  /pipeline/source/target/medrec-0.0.1-SNAPSHOT.jar
