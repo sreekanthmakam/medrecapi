@@ -14,10 +14,10 @@ vulnerable:
   docker: true
   services:
   - id: arminc/clair-db
-    tag: 2017-09-18
+    tag: 2019-03-13
     name: postgres
   - id: arminc/clair-local-scan
-    tag: v2.0.1
+    tag: v2.0.6
     name: clair
   steps:
     - script:
