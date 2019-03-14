@@ -25,7 +25,6 @@ push:
 deploy:
     box: node:10.9.0
     steps:
-
     # `apply` is a good command to use here, as it'll create Kubernetes entities if they are missing.
     - kubectl:
         name: deploy to oke
@@ -33,12 +32,3 @@ deploy:
         token: $OKE_TOKEN
         insecure-skip-tls-verify: true
         command: apply -f $WERCKER_ROOT/kubernetes_deployment.yml --namespace=default
-
-    # Watch the Kubernetes deployment. Once the pods are considered healthy the step will exit 0
-    # If they aren't healthy within 60 seconds, it will exit with a non 0 exit code, and cause the run to fail.
-    - kubectl:
-        name: check deployment status
-        server: $OKE_URL
-        token: $OKE_TOKEN
-        insecure-skip-tls-verify: true
-        command: rollout status deployment/medrecapi
