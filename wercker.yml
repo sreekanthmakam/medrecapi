@@ -31,10 +31,10 @@ deploy:
     - bash-template
     - script:
           name: "Visualise Kubernetes config"
-          code: cat kubernetes-deployment.yml
+          code: cat kubernetes_deployment.yml
                     
     - kubectl:
           server: $OKE_URL
           token: $OKE_TOKEN
           insecure-skip-tls-verify: true
-          command: create -f $WERCKER_ROOT/kubernetes-deployment.yml --namespace=default
+          command: create -f $WERCKER_ROOT/kubernetes_deployment.yml --namespace=default
