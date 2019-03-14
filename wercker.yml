@@ -27,14 +27,10 @@ deploy:
     id: alpine
     cmd: /bin/sh
 
-  steps:
-    - bash-template
-    - script:
-          name: "Visualise Kubernetes config"
-          code: cat kubernetes_deployment.yml
-                    
+  steps:                    
     - kubectl:
-          server: $OKE_URL
-          token: $OKE_TOKEN
-          insecure-skip-tls-verify: true
-          command: create -f $WERCKER_ROOT/kubernetes_deployment.yml --namespace=default
+        name: "Deploy medrecapi"       
+        server: $OKE_URL
+        token: $OKE_TOKEN
+        insecure-skip-tls-verify: true
+        command: create -f $WERCKER_ROOT/kubernetes_deployment.yml --namespace=default
