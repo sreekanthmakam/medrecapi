@@ -27,6 +27,16 @@ deploy:
   steps:
     - bash-template
     - script:
+        name: "Replace image name"
+        code: sed -i -e "s/medrec_image/$OCIR_REGISTRY\/$OCIR_REPOSITORY/g" $WERCKER_ROOT/kubernetes_deployment.yml
+
+#    - bash-template
+    - script:
+        name: "Replace secret name"
+        code: sed -i -e "s/ocirsecretname/$OCIR_SECRET/g" $WERCKER_ROOT/kubernetes_deployment.yml
+    
+#    - bash-template
+    - script:
         name: "Visualise Kubernetes config"
         code: cat kubernetes_deployment.yml      
 
@@ -46,7 +56,7 @@ deploy:
 
     - kubectl:
         name: check deployment status
-        server: $OKE_MASTER
+        server: $OKE_URL
         token: $OKE_TOKEN
         insecure-skip-tls-verify: true
         command: rollout status deployment/medrecapi

@@ -12,13 +12,13 @@ spec:
     spec:
       containers:
       - name: medrecapi
-        image: ${OCIR_REGISTRY}/${OCIR_REPOSITORY}:v1
+        image: medrec_image:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           protocol: TCP
       imagePullSecrets:
-      - name: ${OCIR_SECRET}
+      - name: ocirsecretname
       restartPolicy: Always
 ---
 apiVersion: v1
