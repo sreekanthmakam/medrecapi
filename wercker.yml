@@ -1,7 +1,6 @@
 box: combient/java-mvn  
 test:
   steps:
-    # Run tests on medrec REST API
     - script:
         name: Maven test
         code: mvn test
@@ -13,22 +12,41 @@ build:
 
 push:
   steps:
-    # Push to public docker repo Container Registry (CR)
     - internal/docker-push:
         username: $OCIR_USERNAME
         password: $OCIR_PASSWORD
         repository: $OCIR_REPOSITORY
         tag: v1
-        registry: $OCIR_REGISTRY
+        registry: https://$OCIR_REGISTRY/v2
         cmd: java -jar  /pipeline/source/target/medrec-0.0.1-SNAPSHOT.jar
 
 deploy:
-    box: node:10.9.0
-    steps:
-    # `apply` is a good command to use here, as it'll create Kubernetes entities if they are missing.
+  box: 
+    id: alpine
+    cmd: /bin/sh
+  steps:
+    - bash-template
+    - script:
+        name: "Visualise Kubernetes config"
+        code: cat kubernetes-deployment.yml      
+
     - kubectl:
         name: deploy to oke
         server: $OKE_URL
         token: $OKE_TOKEN
         insecure-skip-tls-verify: true
         command: apply -f $WERCKER_ROOT/kubernetes_deployment.yml --namespace=default
+
+    - kubectl:
+        name: set deployment timeout
+        server: $OKE_URL
+        token: $OKE_TOKEN
+        insecure-skip-tls-verify: true
+        command: patch deployment/medrecapi -p '{"spec":{"progressDeadlineSeconds":60}}'
+
+    - kubectl:
+        name: check deployment status
+        server: $OKE_MASTER
+        token: $OKE_TOKEN
+        insecure-skip-tls-verify: true
+        command: rollout status deployment/medrecapi
