@@ -27,10 +27,10 @@ deploy:
   steps:
     - script:
         name: "Set env vars"
-        code: ./setenv.sh
+        code: $WERCKER_ROOT/setenv.sh
     - script:
         name: "Visualise Kubernetes config"
-        code: cat kubernetes_deployment.yml      
+        code: cat $WERCKER_ROOT/kubernetes_deployment.yml      
 
     - kubectl:
         name: deploy to oke
