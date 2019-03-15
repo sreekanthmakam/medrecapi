@@ -17,8 +17,8 @@ spec:
         ports:
         - containerPort: 8080
           protocol: TCP
-      imagePullSecrets:
-      - name: ocirsecretname
+      # imagePullSecrets:
+      # - name: ocirsecretname
       restartPolicy: Always
 ---
 apiVersion: v1
