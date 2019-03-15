@@ -25,15 +25,15 @@ deploy:
     id: alpine
     cmd: /bin/sh
   steps:
-#     - bash-template
-#     - script:
-#         name: "Replace image name"
-#         code: sed -i -e "s^medrec_image^$OCIR_REGISTRY\/$OCIR_REPOSITORY^g" $WERCKER_ROOT/kubernetes_deployment.yml
-
-# #    - bash-template
-#     - script:
-#         name: "Replace secret name"
-#         code: sed "s^ocirsecretname^$OCIR_SECRET^g" $WERCKER_ROOT/kubernetes_deployment.yml    
+    - script:
+        name: "Replace repository url"
+        code: sed -i -e "s^registry^$OCIR_REGISTRY^g" $WERCKER_ROOT/kubernetes_deployment.yml
+    - script:
+      name: "Replace repo"
+      code: sed -i -e "s^repository^OCIR_REPOSITORY^g" $WERCKER_ROOT/kubernetes_deployment.yml  
+    - script:
+        name: "Replace secret name"
+        code: sed "s^ocirsecretname^$OCIR_SECRET^g" $WERCKER_ROOT/kubernetes_deployment.yml    
     - script:
         name: "Visualise Kubernetes config"
         code: cat kubernetes_deployment.yml      

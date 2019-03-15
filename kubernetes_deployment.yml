@@ -12,13 +12,13 @@ spec:
     spec:
       containers:
       - name: medrecapi
-        image: iad.ocir.io/apaciaas/medrecapi:v1
+        image: registry/repository:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           protocol: TCP
       imagePullSecrets:
-      - name: ocirsecret2
+      - name: ocirsecretname
       restartPolicy: Always
 ---
 apiVersion: v1
