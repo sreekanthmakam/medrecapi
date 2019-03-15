@@ -26,9 +26,9 @@ deploy:
     cmd: /bin/sh
   steps:
     - bash-template
-    # - script:
-    #     name: "Replace image name"
-    #     code: sed -i -e 's/medrec_image/$OCIR_REGISTRY/$OCIR_REPOSITORY/g' $WERCKER_ROOT/kubernetes_deployment.yml
+    - script:
+        name: "Replace image name"
+        code: sed -i -e 's/medrec_image/\$OCIR_REGISTRY\/\$OCIR_REPOSITORY/g' $WERCKER_ROOT/kubernetes_deployment.yml
 
 #    - bash-template
     - script:
