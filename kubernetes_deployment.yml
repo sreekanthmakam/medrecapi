@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: medrecapi
-        image: iad.ocir.io/apaciaas/medrecapi::v1
+        image: iad.ocir.io/apaciaas/medrecapi:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
