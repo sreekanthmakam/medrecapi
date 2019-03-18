@@ -37,7 +37,6 @@ deploy:
     - script:
         name: "Visualise Kubernetes config"
         code: cat kubernetes_deployment.yml      
-
     - kubectl:
         name: deploy to oke
         server: $OKE_URL
