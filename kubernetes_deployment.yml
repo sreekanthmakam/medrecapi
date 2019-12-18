@@ -12,13 +12,11 @@ spec:
     spec:
       containers:
       - name: medrecapi
-        image: registry/repository:v1
+        image: lmukadam/acmeblog:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
           protocol: TCP
-      imagePullSecrets:
-      - name: ocirsecretname  
       restartPolicy: Always
 ---
 apiVersion: v1
