@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: medrecapi
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -12,11 +12,13 @@ spec:
     spec:
       containers:
       - name: medrecapi
-        image: lmukadam/acmeblog:latest
+        image: registry/repository:v1
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           protocol: TCP
+      imagePullSecrets:
+      - name: ocirsecretname  
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -27,7 +29,7 @@ metadata:
     app: medrecapi
 spec:
   ports:
-  - port: 80
+  - port: 8080
     name: http
   selector:
     app: medrecapi
